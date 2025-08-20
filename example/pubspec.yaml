@@ -1,0 +1,23 @@
+name: flutter_virtual_scroll_example
+description: Example app for the flutter_virtual_scroll package.
+publish_to: 'none'
+
+version: 0.0.1+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_virtual_scroll:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

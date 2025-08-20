@@ -1,0 +1,56 @@
+name: flutter_virtual_scroll
+description: High-performance virtual scrolling for large lists and grids with support for all 6 platforms (iOS, Android, Web, Windows, macOS, Linux) and WASM compatibility.
+version: 0.0.1
+homepage: https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll
+repository: https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll
+issue_tracker: https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll/issues
+documentation: https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll#readme
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  test: ^1.0.0
+  mockito: ^5.0.0
+  build_runner: ^2.0.0
+
+flutter:
+  # No assets needed for this package
+  
+platforms:
+  android:
+  ios:
+  web:
+  windows:
+  macos:
+  linux:
+
+# Additional metadata for pub.dev
+topics:
+  - virtual-scroll
+  - performance
+  - lists
+  - grids
+  - scrolling
+  - optimization
+  - cross-platform
+  - wasm
+
+# Keywords for better discoverability
+keywords:
+  - virtual scrolling
+  - performance optimization
+  - large lists
+  - memory efficient
+  - cross platform
+  - wasm compatible
+  - flutter widgets
+  - scroll optimization

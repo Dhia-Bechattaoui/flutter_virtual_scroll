@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// A high-performance virtual scrolling grid view.
 ///
@@ -40,14 +41,26 @@ class VirtualGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      controller: controller,
-      physics: physics ?? const ClampingScrollPhysics(),
-      padding: padding,
-      itemCount: itemCount,
-      cacheExtent: cacheExtent,
-      itemBuilder: itemBuilder,
-      gridDelegate: gridDelegate,
+    // Web/WASM optimization: Use larger cache extent for smoother scrolling
+    final optimizedCacheExtent = kIsWeb ? cacheExtent * 1.5 : cacheExtent;
+
+    return Semantics(
+      label: 'Virtual grid with $itemCount items',
+      hint: 'Scroll to navigate through the grid',
+      child: GridView.builder(
+        controller: controller,
+        physics: physics ?? const ClampingScrollPhysics(),
+        padding: padding,
+        itemCount: itemCount,
+        cacheExtent: optimizedCacheExtent,
+        itemBuilder: (context, index) {
+          return Semantics(
+            label: 'Grid item ${index + 1} of $itemCount',
+            child: itemBuilder(context, index),
+          );
+        },
+        gridDelegate: gridDelegate,
+      ),
     );
   }
 }

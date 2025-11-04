@@ -103,6 +103,118 @@ List<int> calculateVisibleItemRange({
   return [startIndex, endIndex];
 }
 
+/// Responsive utilities for virtual scrolling.
+///
+/// Provides helper methods for adapting virtual scroll layouts
+/// to different screen sizes and orientations.
+class VirtualScrollResponsiveUtils {
+  /// Calculates optimal cross-axis count for grids based on screen width.
+  ///
+  /// Returns a responsive column count based on breakpoints.
+  static int getResponsiveCrossAxisCount(double screenWidth) {
+    if (screenWidth < 600) {
+      return 2; // Mobile: 2 columns
+    } else if (screenWidth < 900) {
+      return 3; // Tablet: 3 columns
+    } else if (screenWidth < 1200) {
+      return 4; // Desktop: 4 columns
+    } else {
+      return 5; // Large desktop: 5 columns
+    }
+  }
+
+  /// Calculates optimal item extent based on screen size.
+  ///
+  /// Returns a responsive item height.
+  static double getResponsiveItemExtent(double screenHeight) {
+    if (screenHeight < 600) {
+      return 60.0; // Small screens
+    } else if (screenHeight < 900) {
+      return 80.0; // Medium screens
+    } else {
+      return 100.0; // Large screens
+    }
+  }
+
+  /// Determines if the device is in landscape orientation.
+  static bool isLandscape(double width, double height) {
+    return width > height;
+  }
+
+  /// Calculates optimal cache extent based on device capabilities.
+  static double getResponsiveCacheExtent(
+    double screenHeight,
+    bool isLowMemoryDevice,
+  ) {
+    final baseCache = screenHeight * 0.5; // Cache half screen height
+    return isLowMemoryDevice ? baseCache * 0.5 : baseCache;
+  }
+}
+
+/// Intelligent caching utilities for virtual scrolling.
+///
+/// Provides advanced caching strategies for optimal memory usage
+/// and performance.
+class VirtualScrollCacheUtils {
+  /// Calculates intelligent cache extent based on scroll velocity and item count.
+  ///
+  /// Returns a cache extent that adapts to scrolling behavior.
+  static double calculateIntelligentCacheExtent({
+    required double baseCacheExtent,
+    required double scrollVelocity,
+    required int itemCount,
+    double maxVelocity = 1000.0,
+  }) {
+    // Increase cache for fast scrolling to prevent visible gaps
+    final velocityFactor = (scrollVelocity / maxVelocity).clamp(0.0, 1.0);
+    final adaptiveCache = baseCacheExtent * (1.0 + velocityFactor);
+
+    // Adjust for large lists (more cache needed)
+    final sizeFactor = (itemCount > 10000) ? 1.5 : 1.0;
+
+    return (adaptiveCache * sizeFactor).clamp(
+      baseCacheExtent,
+      baseCacheExtent * 2.0,
+    );
+  }
+
+  /// Determines optimal cache size based on memory constraints.
+  static double getOptimalCacheForMemory({
+    required double viewportSize,
+    required int itemCount,
+    required double itemSize,
+    bool isLowMemory = false,
+  }) {
+    final itemsInViewport = (viewportSize / itemSize).ceil();
+
+    if (isLowMemory) {
+      // Cache only 1x viewport for low memory devices
+      return itemsInViewport * itemSize;
+    } else {
+      // Cache 2-3x viewport for normal devices
+      return itemsInViewport * itemSize * 2.5;
+    }
+  }
+
+  /// Calculates cache priority based on item position.
+  ///
+  /// Returns true if item should be kept in cache (high priority).
+  static bool shouldKeepInCache({
+    required int itemIndex,
+    required int visibleStartIndex,
+    required int visibleEndIndex,
+    required int cacheSize,
+  }) {
+    final distanceFromVisible = [
+      (itemIndex - visibleStartIndex).abs(),
+      (itemIndex - visibleEndIndex).abs(),
+    ].reduce((a, b) => a < b ? a : b);
+
+    // Keep items close to visible area in cache
+    return distanceFromVisible <= cacheSize;
+  }
+}
+
 /// Performance monitoring utilities for virtual scrolling.
 ///
 /// This class provides static methods for measuring and monitoring

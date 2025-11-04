@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.1.0] - 2025-11-04
+
+### Fixed
+- Fixed grid scrolling to item functionality - now correctly scrolls to the target row and ensures the row is fully visible at the top
+- Improved row height calculation for grids using padding, spacing, and aspect ratio parameters
+- Added fine-tuning logic to verify and correct scroll position after animation completes
+
+### Added
+- Grid layout parameters (mainAxisSpacing, crossAxisSpacing, childAspectRatio, padding) support in VirtualScrollController for accurate scroll calculations
+
 ## [0.0.1] - 2024-12-19
 
 ### Added

@@ -6,10 +6,7 @@ import 'package:flutter/material.dart';
 /// with large datasets.
 class VirtualScrollPhysics extends ScrollPhysics {
   /// Creates virtual scroll physics.
-  const VirtualScrollPhysics({
-    super.parent,
-    this.itemExtent,
-  });
+  const VirtualScrollPhysics({super.parent, this.itemExtent});
 
   /// The extent of each item.
   final double? itemExtent;

@@ -6,6 +6,10 @@
 
 High-performance virtual scrolling for large lists and grids with support for all 6 platforms (iOS, Android, Web, Windows, macOS, Linux) and WASM compatibility.
 
+## Example
+
+<img src="example.gif" width="300" alt="Flutter Virtual Scroll Example">
+
 ## Features
 
 - 🚀 **High Performance**: Only renders visible items for optimal memory usage
@@ -228,11 +232,23 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
+### Getting Help
+
 If you encounter any issues or have questions, please:
 
 1. Check the [documentation](https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll#readme)
 2. Search [existing issues](https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll/issues)
 3. Create a [new issue](https://github.com/Dhia-Bechattaoui/flutter_virtual_scroll/issues/new)
+
+### Supporting the Project
+
+If you find this package helpful and want to support its development, consider:
+
+- [GitHub Sponsors](https://github.com/sponsors/Dhia-Bechattaoui) - Monthly or one-time sponsorships
+- Star the repository - Help others discover this package
+- Share with others - Spread the word about flutter_virtual_scroll
+
+Your support helps maintain and improve this package! 🙏
 
 ---
 

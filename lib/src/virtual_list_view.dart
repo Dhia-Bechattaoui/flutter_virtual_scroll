@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 /// A high-performance virtual scrolling list view that only renders visible items.
 ///
@@ -40,14 +41,26 @@ class VirtualListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      controller: controller,
-      physics: physics ?? const ClampingScrollPhysics(),
-      padding: padding,
-      itemCount: itemCount,
-      itemExtent: itemExtent,
-      cacheExtent: cacheExtent,
-      itemBuilder: itemBuilder,
+    // Web/WASM optimization: Use larger cache extent for smoother scrolling
+    final optimizedCacheExtent = kIsWeb ? cacheExtent * 1.5 : cacheExtent;
+
+    return Semantics(
+      label: 'Virtual list with $itemCount items',
+      hint: 'Scroll to navigate through the list',
+      child: ListView.builder(
+        controller: controller,
+        physics: physics ?? const ClampingScrollPhysics(),
+        padding: padding,
+        itemCount: itemCount,
+        itemExtent: itemExtent,
+        cacheExtent: optimizedCacheExtent,
+        itemBuilder: (context, index) {
+          return Semantics(
+            label: 'Item ${index + 1} of $itemCount',
+            child: itemBuilder(context, index),
+          );
+        },
+      ),
     );
   }
 }

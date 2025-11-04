@@ -1,12 +1,11 @@
-/// High-performance virtual scrolling for large lists and grids.
-///
-/// This package provides efficient virtual scrolling implementations that only
-/// render visible items, making it ideal for large datasets with thousands
-/// or millions of items.
-///
-/// Supports all 6 platforms: iOS, Android, Web, Windows, macOS, Linux
-/// with WASM compatibility for web.
-library flutter_virtual_scroll;
+// High-performance virtual scrolling for large lists and grids.
+//
+// This package provides efficient virtual scrolling implementations that only
+// render visible items, making it ideal for large datasets with thousands
+// or millions of items.
+//
+// Supports all 6 platforms: iOS, Android, Web, Windows, macOS, Linux
+// with WASM compatibility for web.
 
 export 'src/virtual_list_view.dart';
 export 'src/virtual_grid_view.dart';

@@ -8,7 +8,7 @@ High-performance virtual scrolling for large lists and grids with support for al
 
 ## Example
 
-<img src="example.gif" width="300" alt="Flutter Virtual Scroll Example">
+<img src="assets/example.gif" width="300" alt="Flutter Virtual Scroll Example">
 
 ## Features
 

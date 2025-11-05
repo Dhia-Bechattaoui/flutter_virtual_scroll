@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2025-11-05
+
+### Fixed
+- Fixed example GIF path in README.md to correctly reference assets/example.gif
+
+### Changed
+- Added pubspec.lock to .gitignore to prevent tracking lock files
+
 ## [0.1.0] - 2025-11-04
 
 ### Fixed
